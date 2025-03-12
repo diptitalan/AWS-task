@@ -1,8 +1,6 @@
 exports.handler = async (event) => {
-    // TODO implement
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify('Hello from Lambda!'),
-    };
-    return response;
+    event.Records.forEach(record => {
+        console.log(`Received SQS message: ${record.body}`);
+    });
+    return { statusCode: 200 };
 };

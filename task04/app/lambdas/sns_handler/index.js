@@ -1,8 +1,7 @@
 exports.handler = async (event) => {
-    console.log('Received SNS message:', JSON.stringify(event, null, 2));
-    return {
-      statusCode: 200,
-      body: 'Message logged successfully!'
-    };
-  };
-  
+    event.Records.forEach(record => {
+        const snsMessage = record.Sns.Message;
+        console.log(`Received SNS message: ${snsMessage}`);
+    });
+    return { statusCode: 200 };
+};
